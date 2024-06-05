@@ -54,7 +54,7 @@ public class testRegister {
 
         registerPage.escribirNombre("Rodrigo");
         registerPage.escribirApellido("Ruiz");
-        registerPage.escribirCorreo("");
+        registerPage.escribirCorreo("ruivia82@hotmail.com");
         registerPage.escribirTelefono("095789247");
         registerPage.escribirContraseña("Imp.456");
         registerPage.repetirContraseña("Imp.456");
@@ -69,15 +69,16 @@ public class testRegister {
         test.log(Status.INFO, "Finaliza el Test");
 
     }
+    // Test para verificar el comportamiento cuando el correo está vacío
     @Test
-    public void test_LogueoMailVacio() throws InterruptedException {
+    public void test_MailVacio() throws InterruptedException {
         ExtentTest test = extent.createTest("Registro Exitoso");
         test.log(Status.INFO, "Comienza el Test");
         test.log(Status.PASS, "Ingreso en el registro de Open Cart");
         RegisterPage registerPage = new RegisterPage(driver, wait);
         registerPage.clickCrearCuenta();
         registerPage.clickRegistrarse();
-
+        // Llenado de formulario con el campo de correo vacío
         registerPage.escribirNombre("Rodrigo");
         registerPage.escribirApellido("Ruiz");
         registerPage.escribirCorreo("");
@@ -91,19 +92,20 @@ public class testRegister {
         test.log(Status.PASS, "Acepto términos y condiciones");
         registerPage.clickFinalizarRegistro();
 
-
+        // Validación del mensaje de error por correo vacío
         String valida = registerPage.validaMailObligatorio();
         assertTrue(valida.equals(""));
     }
 
 
 
+    // Finalización de cada test
     @AfterEach
     public void endTest() throws InterruptedException {
         RegisterPage registerPage = new RegisterPage(driver, wait);
         registerPage.close();
     }
-
+    // Finalización del reporte después de todos los tests
     @AfterAll
     public static void finish() {
         extent.flush();

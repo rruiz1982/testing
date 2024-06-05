@@ -18,119 +18,93 @@ public class RegisterPage extends BasePage{
     private By acceptConditions = By.name("agree");
     private By exito = By.xpath("(//p[contains(text(),'Congratulations! Your new account has been success')])[1]");
     private  By mailObligatorio = By.id("input-email");
-    /**Constructor de la clase RegisterPage
-     * @param driver la instancia de WebDriver utilizada para interactuar con la página web
-     */
+
+    // Constructor de la clase que inicializa el WebDriver y el WebDriverWait
+
     public RegisterPage(WebDriver driver, WebDriverWait wait) {
         super(driver, null);
     }
 
-    /** Hace click en el botón "My Account".
-     * @throws InterruptedException si el hilo es interrumpido mientras espera
-     */
+    // Método para hacer clic en "My Account"
+
     public void clickCrearCuenta() throws InterruptedException {
         this.click(btnMyAccount);
     }
 
-    /** Hace click en el botón "Register".
-     * @throws InterruptedException si el hilo es interrumpido mientras espera
-     */
+    // Método para hacer clic en "Register"
+
     public void clickRegistrarse() throws InterruptedException {
         this.click(btnRegister);
     }
 
-    /** Hace click en el botón "Continue" del form de registro.
-     * @throws InterruptedException si el hilo es interrumpido mientras espera
-     */
+    // Método para hacer clic en el botón de confirmación de registro
+
     public void clickConfirmRegister() throws InterruptedException {
         this.click(btnConfirmRegister);
     }
 
-    /** Ingresa el nombre proporcionado en el campo de nombre.
-     * @param name el nombre a ingresar en el campo
-     * @throws InterruptedException si el hilo es interrumpido mientras espera
-     */
+    // Método para ingresar el nombre en el campo correspondiente
+
     public void escribirNombre(String name) throws InterruptedException {
         this.sendText(name, nombre);
     }
 
-    /** Ingresa el apellido proporcionado en el campo de apellido.
-     * @param name el apellido a ingresar en el campo
-     * @throws InterruptedException si el hilo es interrumpido mientras espera
-     */
+    // Método para ingresar el apellido en el campo correspondiente
+
     public void escribirApellido(String name) throws InterruptedException {
         this.sendText(name, apellido);
     }
 
-    /** Ingresa el correo electrónico proporcionado en el campo de correo electrónico.
-     * @param mail el correo electrónico a ingresar en el campo
-     * @throws InterruptedException si el hilo es interrumpido mientras espera
-     */
+    // Método para ingresar el correo electrónico en el campo correspondiente
+
     public void escribirCorreo(String mail) throws InterruptedException {
         this.sendText(mail, email);
     }
 
-    /** Ingresa el telefono proporcionado en el campo de telefono.
-     * @param tel el telefono a ingresar en el campo
-     * @throws InterruptedException si el hilo es interrumpido mientras espera
-     */
+    // Método para ingresar el teléfono en el campo correspondiente
+
     public void escribirTelefono(String tel) throws InterruptedException {
         this.sendText(tel, telefono);
     }
 
-    /** Ingresa la contraseña proporcionada en el campo de contraseña.
-     * @param pass la contraseña a ingresar en el campo
-     * @throws InterruptedException si el hilo es interrumpido mientras espera
-     */
+    // Método para ingresar la contraseña en el campo correspondiente
+
     public void escribirContraseña(String pass) throws InterruptedException {
         this.sendText(pass, password);
     }
+    // Método para repetir la contraseña en el campo correspondiente
 
-    /** Reingresa la contraseña proporcionada en el campo de confirmación de contraseña.
-     * @param pass la contraseña a reingresar en el campo
-     * @throws InterruptedException si el hilo es interrumpido mientras espera
-     */
     public void repetirContraseña(String pass) throws InterruptedException {
         this.sendText(pass, repassword);
     }
 
-    /** Hace click en el botón "NO" del newsletter.
-     *
-     * @throws InterruptedException si el hilo es interrumpido mientras espera
-     */
+    // Método para rechazar la suscripción al newsletter
+
     public void clickRejectNewsletter() throws InterruptedException {
         this.click(newsletter);
     }
 
-    /** Hace click en el checkbox de politicas.
-     *
-     * @throws InterruptedException si el hilo es interrumpido mientras espera
-     */
+    // Método para aceptar los términos y condiciones
+
     public void clickPoliciesCheckbox() throws InterruptedException {
         this.click(acceptConditions);
     }
 
-    /** Hace click en el botón "Continue".
-     *
-     * @throws InterruptedException si el hilo es interrumpido mientras espera
-     */
+    // Método para finalizar el registro haciendo clic en el botón de confirmación
+
     public void clickFinalizarRegistro() throws InterruptedException {
         this.click(btnConfirmRegister);
     }
 
-    /** Obtiene el texto del mensaje de éxito indicando la creación de la cuenta.
-     * @return el texto del mensaje de éxito
-     * @throws InterruptedException si el hilo es interrumpido mientras espera
-     */
+    // Método para obtener y devolver el mensaje de éxito del registro
+
     public String cuentaCreadaExito() throws InterruptedException {
         String res = this.getText(exito);
         System.out.println("Resultado Card value: " + res);
         return res;
     }
-    /** Obtiene mensaje de Email obligatorio.
-     * @return El mensaje de obligatorio.
-     * @throws InterruptedException Si ocurre un error durante la espera.
-     */
+    // Método para validar y devolver el mensaje de error de correo obligatorio
+
     public String validaMailObligatorio() throws InterruptedException {
         System.out.println("Se valida mensaje de Mail Obligatorio: " + this.getText(mailObligatorio));
         return this.getText(mailObligatorio);
